@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.aerogear.push</groupId>
+  <artifactId>ios-server</artifactId>
+  <name>WildFly Swarm Example</name>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <version.ups>2.0.0-SNAPSHOT</version.ups>
+    <version.wildfly.swarm>2018.1.0</version.wildfly.swarm>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>bom-all</artifactId>
+        <version>${version.wildfly.swarm}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <finalName>demo</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>wildfly-swarm-plugin</artifactId>
+        <version>${version.wildfly.swarm}</version>
+        
+        <executions>
+          <execution>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <!-- Java EE 7 dependency -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- WildFly Swarm Fractions -->
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>microprofile</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aerogear.kafka</groupId>
+      <artifactId>kafka-cdi-extension</artifactId>
+      <version>0.0.10</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.aerogear.unifiedpush</groupId>
+      <artifactId>unifiedpush-model-api</artifactId>
+      <version>${version.ups}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.aerogear.unifiedpush</groupId>
+      <artifactId>unifiedpush-push-model</artifactId>
+      <version>${version.ups}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.jodah</groupId>
+      <artifactId>expiringmap</artifactId>
+      <version>0.5.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.turo</groupId>
+      <artifactId>pushy</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+
+
+  </dependencies>
+</project>
